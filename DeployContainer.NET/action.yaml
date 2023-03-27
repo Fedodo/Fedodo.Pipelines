@@ -1,0 +1,34 @@
+name: 'Deploy Container .NET'
+description: 'Deploy Container'
+inputs:
+  KUBECTL_CONFIG:
+    description: ""
+    required: true
+  VALUES_FILE:
+    description: ""
+    required: true
+  MICROSERVICE:
+    description: ""
+    required: true
+  DOCKERHUB_USERNAME:
+    description: "The username with which the container will be published to DockerHub."
+    required: false
+    default: "fedodo"
+runs:
+  using: "composite"
+  steps:
+    # Download Secure-File
+    - name: base64-to-file
+      id: write_file
+      uses: timheuer/base64-to-file@v1.1
+      with:
+        fileName: "custom-config"
+        encodedString: ${{ inputs.KUBECTL_CONFIG }}
+
+    # Checkout
+    - uses: actions/checkout@v3
+
+    # Deploy to Kubernetes
+    - name: Helm Upgrade
+      shell: bash
+      run: helm upgrade fedodo oci://registry-1.docker.io/fedodo/fedodo.chart --values ${{ inputs.VALUES_FILE }} --kubeconfig ${{ steps.write_file.outputs.filePath }} --set microservices.${{ inputs.MICROSERVICE }}.version=${{ inputs.DOCKERHUB_USERNAME }}/${{ inputs.MICROSERVICE }}:dev_${{ github.run_number }}

@@ -1,15 +1,10 @@
 <!-- VERSION: Fedodo.README.Template V1.0 -->
 
-[//]: # (Replace: {{RepositoryName}} )
-
-<!-- TODO Update wakatime -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/931d730c-4999-4084-84d0-9639c865bcce.svg?style=for-the-badge&logo=appveyor)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/931d730c-4999-4084-84d0-9639c865bcce.svg?style=for-the-badge&logo=appveyor)
-[![HugoBuildAndDeploy](https://img.shields.io/github/actions/workflow/status/Fedodo/{{RepositoryName}}/Build.yaml?style=for-the-badge)](https://github.com/Fedodo/{{RepositoryName}}/actions/workflows/Build.yaml)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -21,10 +16,9 @@
 <br>
 <br>
 
-### {{RepositoryName}}
+### Fedodo.Pipelines
 
-<!-- TODO Change the description -->
-In this repository I have created a README-Template based on Best-README-Template
+This is the repository which contains the pipeline files for Fedodo.
 
 <p align="center">
 
@@ -33,18 +27,14 @@ In this repository I have created a README-Template based on Best-README-Templat
 <a href="https://fedodo.org"><strong>Explore the Project »</strong></a>
 <br />
 <br />
-<a href="https://github.com/Fedodo/{{RepositoryName}}/issues">Report Bug</a>
+<a href="https://github.com/Fedodo/Fedodo.Pipelines/issues">Report Bug</a>
 ·
-<a href="https://github.com/Fedodo/{{RepositoryName}}/issues">Request Feature</a>
+<a href="https://github.com/Fedodo/Fedodo.Pipelines/issues">Request Feature</a>
   </p>
 </div>
 
 ## Build With 🏗️
 
-<!-- TODO Go to https://github.com/Ileriayo/markdown-badges and search for a fitting batch🙃 -->
-
-![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)  
-![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)  
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)  
 
 <br>
@@ -64,19 +54,18 @@ The code is distributed under the AGPL-3.0 License. See `LICENSE` for more infor
 <br>
 
 <!-- ACKNOWLEDGMENTS -->
-<!-- TODO Add your acknowledgments -->
 ## Acknowledgments 🙏
 
 - [LNA-DEV README-Template](https://github.com/lna-dev/README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/Fedodo/{{RepositoryName}}.svg?style=for-the-badge
-[contributors-url]: https://github.com/Fedodo/{{RepositoryName}}/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Fedodo/{{RepositoryName}}.svg?style=for-the-badge
-[forks-url]: https://github.com/Fedodo/{{RepositoryName}}/network/members
-[stars-shield]: https://img.shields.io/github/stars/Fedodo/{{RepositoryName}}.svg?style=for-the-badge
-[stars-url]: https://github.com/Fedodo/{{RepositoryName}}/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Fedodo/{{RepositoryName}}.svg?style=for-the-badge
-[issues-url]: https://github.com/Fedodo/{{RepositoryName}}/issues
-[license-shield]: https://img.shields.io/github/license/Fedodo/{{RepositoryName}}.svg?style=for-the-badge
-[license-url]: https://github.com/Fedodo/{{RepositoryName}}/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/Fedodo/Fedodo.Pipelines.svg?style=for-the-badge
+[contributors-url]: https://github.com/Fedodo/Fedodo.Pipelines/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Fedodo/Fedodo.Pipelines.svg?style=for-the-badge
+[forks-url]: https://github.com/Fedodo/Fedodo.Pipelines/network/members
+[stars-shield]: https://img.shields.io/github/stars/Fedodo/Fedodo.Pipelines.svg?style=for-the-badge
+[stars-url]: https://github.com/Fedodo/Fedodo.Pipelines/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Fedodo/Fedodo.Pipelines.svg?style=for-the-badge
+[issues-url]: https://github.com/Fedodo/Fedodo.Pipelines/issues
+[license-shield]: https://img.shields.io/github/license/Fedodo/Fedodo.Pipelines.svg?style=for-the-badge
+[license-url]: https://github.com/Fedodo/Fedodo.Pipelines/blob/master/LICENSE

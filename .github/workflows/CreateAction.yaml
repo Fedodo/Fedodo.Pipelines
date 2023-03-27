@@ -14,7 +14,12 @@ jobs:
       # Checkout
       - uses: actions/checkout@v3
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1.12.0
+      - name: release
+        uses: actions/create-release@v1
+        id: Fedodo.Pipelines.BuildContainer.NET
         with:
-          tag: V${{ github.run_number }}
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: V${{ github.run_number }}
+#          body_path: ./.github/Changelog.md

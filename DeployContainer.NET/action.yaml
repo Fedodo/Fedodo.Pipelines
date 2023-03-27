@@ -10,6 +10,9 @@ inputs:
   MICROSERVICE:
     description: ""
     required: true
+  REPO:
+    description: ""
+    required: true
   DOCKERHUB_USERNAME:
     description: "The username with which the container will be published to DockerHub."
     required: false
@@ -31,4 +34,4 @@ runs:
     # Deploy to Kubernetes
     - name: Helm Upgrade
       shell: bash
-      run: helm upgrade fedodo oci://registry-1.docker.io/fedodo/fedodo.chart --values ${{ inputs.VALUES_FILE }} --kubeconfig ${{ steps.write_file.outputs.filePath }} --set microservices.${{ inputs.MICROSERVICE }}.version=${{ inputs.DOCKERHUB_USERNAME }}/${{ inputs.MICROSERVICE }}:dev_${{ github.run_number }}
+      run: helm upgrade fedodo oci://registry-1.docker.io/fedodo/fedodo.chart --values ${{ inputs.VALUES_FILE }} --kubeconfig ${{ steps.write_file.outputs.filePath }} --set microservices.${{ inputs.MICROSERVICE }}.version=${{ inputs.DOCKERHUB_USERNAME }}/${{ inputs.REPO }}:dev_${{ github.run_number }}

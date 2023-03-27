@@ -16,7 +16,7 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: Fedodo.Pipelines.BuildContainer.NET
+        id: Fedodo_Pipelines_BuildContainer_NET
         with:
           draft: false
           prerelease: false

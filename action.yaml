@@ -25,13 +25,16 @@ runs:
         dotnet-version: "6.x"
 
     - name: "Restore packages"
+      shell: bash
       run: dotnet restore ${{ inputs.PROJECT_PATH }}
 
     - name: "Test"
+      shell: bash
       run: dotnet test ${{ inputs.PROJECT_PATH }} --no-restore --configuration Release
 
     # Build
     - name: Build the Docker image
+      shell: bash
       run: docker build . --file Dockerfile --tag ${{ inputs.DOCKERHUB_USERNAME }}/fedodo.be.activitypub:${{ github.run_number }}
 
     # Publish
@@ -42,4 +45,5 @@ runs:
         password: ${{ inputs.DOCKERHUB_TOKEN }}
 
     - name: Push the image to dockerhub
+      shell: bash
       run: docker push ${{ inputs.DOCKERHUB_USERNAME }}/fedodo.be.activitypub:${{ github.run_number }}

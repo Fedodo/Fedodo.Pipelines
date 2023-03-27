@@ -1,23 +1,42 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'Build Container .NET'
+description: 'Build and publish Docker-Image'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  DOCKERHUB_USERNAME:
+    description: "The username with which the container will be published to DockerHub."
+    required: false
+    default: "fedodo"
+  PROJECT_PATH:
+    description: "Path to the Test-Project."
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - run: goodbye.sh
-      shell: bash
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Test
+    - name: "Install .net"
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "6.x"
+
+    - name: "Restore packages"
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+
+    - name: "Test"
+      run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+
+    # Build
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ env.DOCKERHUB_USERNAME }}/fedodo.be.activitypub:${{ github.run_number }}
+
+    # Publish
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ env.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push the image to dockerhub
+      run: docker push ${{ env.DOCKERHUB_USERNAME }}/fedodo.be.activitypub:${{ github.run_number }}

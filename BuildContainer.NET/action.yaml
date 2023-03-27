@@ -53,4 +53,4 @@ runs:
 
     - name: Push the image to dockerhub
       shell: bash
-      run: docker push ${{ inputs.DOCKERHUB_USERNAME }}/${{ inputs.REPO }}:${{ github.run_number }}
+      run: docker push ${{ inputs.DOCKERHUB_USERNAME }}/${{ inputs.REPO }}:${{ inputs.TAG_PREFIX }}${{ github.run_number }}

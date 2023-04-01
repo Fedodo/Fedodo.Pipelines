@@ -45,4 +45,4 @@ runs:
 
     - name: "Push Package"
       shell: bash
-      run: dotnet nuget push ${{ inputs.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg -k ${{ inputs.NUGET_KEY }} -s ${{ inputs.NUGET_SOURCE_URL }} --skip-duplicate
+      run: dotnet nuget push ${{ inputs.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ inputs.NUGET_KEY }} -s ${{ inputs.NUGET_SOURCE_URL }} --skip-duplicate

@@ -1,0 +1,44 @@
+name: 'Build NuGet'
+description: 'Build and publish NuGet'
+inputs:
+  PROJECT_PATH:
+    description: ""
+    required: true
+  VERSION:
+    description: ""
+    required: true
+  NUGET_KEY:
+    description: ""
+    required: true
+  NUGET_SOURCE_URL:
+    description: ""
+    required: true
+  PACKAGE_OUTPUT_DIRECTORY:
+    description: ""
+    required: false
+    default: ${{ github.workspace }}\output
+runs:
+  using: "composite"
+  steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+
+    - name: "Install .net"
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "6.x"
+
+    - name: "Restore packages"
+      run: dotnet restore ${{ inputs.PROJECT_PATH }}
+
+    - name: "Build project"
+      run: dotnet build ${{ inputs.PROJECT_PATH }} --no-restore --configuration Release
+
+    #      - name: "Test"
+    #        run: dotnet test ${{ inputs.PROJECT_PATH }} --no-restore --configuration Release
+
+    - name: "Pack Project"
+      run: dotnet pack ${{ inputs.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ inputs.VERSION }} --output ${{ inputs.PACKAGE_OUTPUT_DIRECTORY }}
+
+    - name: "Push Package"
+      run: dotnet nuget push ${{ inputs.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg -k ${{ inputs.NUGET_KEY }} -s ${{ inputs.NUGET_SOURCE_URL }} --skip-duplicate

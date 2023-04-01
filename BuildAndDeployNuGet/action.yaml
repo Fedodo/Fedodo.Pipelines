@@ -15,8 +15,7 @@ inputs:
     required: true
   PACKAGE_OUTPUT_DIRECTORY:
     description: ""
-    required: false
-    default: ${{ github.workspace }}\output
+    required: true
 runs:
   using: "composite"
   steps:

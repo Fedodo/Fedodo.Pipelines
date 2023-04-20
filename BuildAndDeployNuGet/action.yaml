@@ -4,6 +4,9 @@ inputs:
   PROJECT_PATH:
     description: ""
     required: true
+  PROJECT_TEST_PATH:
+    description: ""
+    required: true
   VERSION:
     description: ""
     required: true
@@ -37,7 +40,7 @@ runs:
 
     - name: "Test"
       shell: bash
-      run: dotnet test ${{ inputs.PROJECT_PATH }} --no-restore --configuration Release
+      run: dotnet test ${{ inputs.PROJECT_TEST_PATH }} --no-restore --configuration Release
 
     - name: "Pack Project"
       shell: bash

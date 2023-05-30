@@ -1,4 +1,4 @@
-name: 'Deploy Container .NET'
+name: 'Deploy Container'
 description: 'Deploy Container'
 inputs:
   KUBECTL_CONFIG:

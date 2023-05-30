@@ -24,7 +24,7 @@ runs:
     - name: Install Flutter
       uses: britannio/action-install-flutter@main
 
-    - run: flutter build web --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
+    - run: flutter build web --build-number=${{ github.run_number }}
       working-directory: ./
       shell: bash
 

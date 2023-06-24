@@ -1,0 +1,57 @@
+name: "Create Tag Dart"
+description: "Create Tag Dart"
+inputs:
+  GITHUB_TOKEN:
+    description: "Token which is required for creating the tag."
+    required: true
+  REPO_NAME:
+    description: "Name of the repository."
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - run: git pull origin main
+      shell: bash
+
+    - name: Set PUBSPEC_VERSION
+      shell: bash
+      run: |
+        version=$(grep 'version:' pubspec.yaml | tail -n1 | awk '{ print $2}')
+
+        echo $version
+
+        echo "PUBSPEC_VERSION=$version" >> "$GITHUB_ENV"
+
+    - run: echo "${{ env.PUBSPEC_VERSION }}"
+      shell: bash
+
+    - run: echo "$(cat CHANGELOG.md)"
+      shell: bash
+
+    - run: |
+        git tag v${{ env.PUBSPEC_VERSION }}
+
+        git remote set-url origin "https://LNA-DEV:${{ inputs.GITHUB_TOKEN }}@github.com/Fedodo/${{ inputs.REPO_NAME }}.git"
+
+        git push origin v${{ env.PUBSPEC_VERSION }}
+      shell: bash
+
+    - name: Create Release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: "${{ inputs.GITHUB_TOKEN }}"
+      with:
+        tag_name: v${{ env.PUBSPEC_VERSION }}
+        release_name: v${{ env.PUBSPEC_VERSION }}
+        draft: false
+        prerelease: false
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ inputs.GITHUB_TOKEN }}"
+        automatic_release_tag: "v${{ env.PUBSPEC_VERSION }}"
+        prerelease: false
